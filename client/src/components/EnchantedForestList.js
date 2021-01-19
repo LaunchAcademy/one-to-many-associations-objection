@@ -6,7 +6,7 @@ const EnchantedForestsList = props => {
   
   const getEnchantedForests = async () => {
     try {
-      const response = await fetch("/api/v1/enchanted-forest")
+      const response = await fetch("/api/v1/enchanted-forests")
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
@@ -24,9 +24,10 @@ const EnchantedForestsList = props => {
   }, [])
 
   const enchantedForestListItems = enchantedForests.map(enchantedForest => {
+    debugger
     return(
       <li key={enchantedForest.id}>
-        {enchantedForest.title} in {enchantedForest.location}
+        <Link to={`/enchanted-forests/${enchantedForest.id}`}>{enchantedForest.name}</Link>
       </li>
     )
   })
@@ -37,7 +38,6 @@ const EnchantedForestsList = props => {
       <ul className="enchantedForests">
         {enchantedForestListItems}
       </ul>
-      <Link to="/enchantedForests/new">Dream Up a New EnchantedForest!</Link>
     </>
   )
 }

@@ -1,4 +1,4 @@
-created db enchanted_forest_development
+createdb enchanted_forest_development
 yarn install
 
 todo:
@@ -6,3 +6,4 @@ todo:
 - forest show 
 - update seed data and properties
 - make unicorn seeder
+- add serializer
