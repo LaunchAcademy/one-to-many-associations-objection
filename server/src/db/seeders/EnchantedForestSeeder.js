@@ -4,18 +4,17 @@ class EnchantedForestSeeder {
   static async seed() {
     const enchantedForestsData = [
       {
-        title: "50th Birthday",
-        location: "Italy",
-        length: 9
+        name: "100 Hundred Acre",
+        enchantment: "Winnie the Pooh",
       },
       {
-        title: "Joe's Bachelor Party",
-        location: "New Hampshire"
+        name: "Sunshine Rainbows",
+        enchantment: "Butterflies"
       }
     ]
 
     for (const singleEnchantedForestData of enchantedForestsData) {
-      const currentEnchantedForest = await EnchantedForest.query().findOne({ title: singleEnchantedForestData.title })
+      const currentEnchantedForest = await EnchantedForest.query().findOne({ name: singleEnchantedForestData.name })
       if (!currentEnchantedForest) {
         await EnchantedForest.query().insert(singleEnchantedForestData)
       }
