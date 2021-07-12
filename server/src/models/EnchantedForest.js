@@ -5,9 +5,20 @@ class EnchantedForest extends Model {
     return "enchantedForests"
   }
 
-  static get relationMappings() {
-    const Unicorn = require("./Unicorn")
+  static get jsonSchema() {
+    return {
+      type: "object",
+      required: ["name"],
+      properties: {
+        name: { type: "string", minLength: 2, maxLength: 20 },
+        enchantment: { type: "string" }
+      }
+    }
+  }
 
+  static get relationMappings() {
+    const Unicorn = require("./Unicorn.js")
+    
     return {
       unicorns: {
         relation: Model.HasManyRelation,
@@ -16,18 +27,6 @@ class EnchantedForest extends Model {
           from: "enchantedForests.id",
           to: "unicorns.enchantedForestId"
         }
-      }
-    }
-  }
-
-  static get jsonSchema() {
-    return {
-      type: "object",
-      required: ["name"],
-      properties: {
-        name: { type: "string", minLength: 2, maxLength: 20 },
-        enchantment: { type: "string" },
-        numberOfUnicorns: { type: ["string", "integer"]}
       }
     }
   }

@@ -24,7 +24,7 @@ const EnchantedForestsList = props => {
   }, [])
 
   const enchantedForestListItems = enchantedForests.map(enchantedForest => {
-    debugger
+    // debugger
     return(
       <li key={enchantedForest.id}>
         <Link to={`/enchanted-forests/${enchantedForest.id}`}>{enchantedForest.name}</Link>

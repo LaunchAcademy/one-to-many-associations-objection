@@ -10,21 +10,6 @@ class Unicorn extends Model {
   //   await forest.query().update({numberOfUnicorns: forest.numberOfUnicorns + 1})
   // }
 
-  static get relationMappings() {
-    const Unicorn = require("./Unicorn")
-
-    return {
-      enchantedForests: {
-        relation: Model.HasManyRelation,
-        modelClass: Unicorn,
-        join: {
-          from: "unicorns.enchantedForestId",
-          to: "enchantedForests.id"
-        }
-      }
-    }
-  }
-
   static get jsonSchema() {
     return {
       type: "object",
@@ -33,6 +18,21 @@ class Unicorn extends Model {
         name: { type: "string", minLength: 2, maxLength: 20 },
         magicalAbility: { type: "string" },
         age: { type: ["string", "integer"]}
+      }
+    }
+  }
+
+  static get relationMappings() {
+    const EnchantedForest = require("./EnchantedForest.js")
+
+    return {
+      enchantedForest: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: EnchantedForest,
+        join: {
+          from: "unicorns.enchantedForestId",
+          to: "enchantedForests.id"
+        }
       }
     }
   }

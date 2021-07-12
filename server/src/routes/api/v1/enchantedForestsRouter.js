@@ -1,11 +1,12 @@
 import express from "express"
 import { ValidationError } from "objection"
 
+import EnchantedForest from "../../../models/EnchantedForest.js"
+
 const enchantedForestsRouter = new express.Router()
 
-import EnchantedForest from "../../../models/EnchantedForest.js"
 import enchantedForestUnicornsRouter from "../enchantedForestUnicornsRouter.js"
-
+enchantedForestsRouter.use("/:enchantedForestId/unicorns", enchantedForestUnicornsRouter)
 
 enchantedForestsRouter.get("/", async (req, res) => {
   try {
@@ -26,10 +27,6 @@ enchantedForestsRouter.get("/:id", async (req, res) => {
     return res.status(500).json({ errors: error })
   }
 })
-
-enchantedForestsRouter.use("/:enchantedForestId/unicorns", enchantedForestUnicornsRouter)
-
-
 
 
 export default enchantedForestsRouter
