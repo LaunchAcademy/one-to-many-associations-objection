@@ -6,12 +6,13 @@ class EnchantedForest extends Model {
   }
 
   static get relationMappings() {
-    const Unicorn = require("./Unicorn")
+    // const { Unicorn } = require("./index.js")
+    const Unicorn = require("./Unicorn.js")
 
     return {
       unicorns: {
         relation: Model.HasManyRelation,
-        modelClass: Unicorn,
+        modelClass: Unicorn, 
         join: {
           from: "enchantedForests.id",
           to: "unicorns.enchantedForestId"
@@ -19,6 +20,12 @@ class EnchantedForest extends Model {
       }
     }
   }
+
+  // long form
+  // const unicorns = await Unicorn.query().where({enchantedForestId: enchantedForestOne.id })
+
+  // short form: what we want
+  // const unicorns = await enchantedForestOne.$relatedQuery("unicorns")
 
   static get jsonSchema() {
     return {

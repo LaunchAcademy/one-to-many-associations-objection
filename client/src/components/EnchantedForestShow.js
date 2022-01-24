@@ -8,11 +8,10 @@ const EnchantedForestShow = (props) => {
   const [enchantedForest, setEnchantedForest] = useState({
     name: "",
     enchantment: "",
-    numberOfUnicorns: "",
     unicorns: []
   })
-  const [errors, setErrors] = useState({})
 
+  const [errors, setErrors] = useState({})
   
   const enchantedForestId = props.match.params.id
 
@@ -56,7 +55,6 @@ const EnchantedForestShow = (props) => {
       } else {
         const body = await response.json()
         const updatedUnicorns = enchantedForest.unicorns.concat(body.unicorn)
-        debugger
         setEnchantedForest({...enchantedForest, unicorns: updatedUnicorns})
       }
     } catch(error) {
@@ -72,6 +70,8 @@ const EnchantedForestShow = (props) => {
       />
     )
   })
+
+  console.log(enchantedForest)
 
   return(
     <div className="callout">

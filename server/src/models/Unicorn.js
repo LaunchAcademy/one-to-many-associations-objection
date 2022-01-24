@@ -1,3 +1,4 @@
+const { EnchantedForest } = require(".")
 const Model = require("./Model")
 
 class Unicorn extends Model {
@@ -5,18 +6,13 @@ class Unicorn extends Model {
     return "unicorns"
   }
 
-  // $beforeInsert(inputs){
-  //   const forest = await EnchantedForest.query().findById(inputs.enchantedForestId)
-  //   await forest.query().update({numberOfUnicorns: forest.numberOfUnicorns + 1})
-  // }
-
   static get relationMappings() {
-    const Unicorn = require("./Unicorn")
+    const { EnchantedForest } = require("./index.js")
 
     return {
-      enchantedForests: {
-        relation: Model.HasManyRelation,
-        modelClass: Unicorn,
+      enchantedForest: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: EnchantedForest,
         join: {
           from: "unicorns.enchantedForestId",
           to: "enchantedForests.id"
@@ -24,6 +20,8 @@ class Unicorn extends Model {
       }
     }
   }
+
+  // unicornOne.$relatedQuery("enchantedForest")
 
   static get jsonSchema() {
     return {
