@@ -3,7 +3,7 @@ import { ValidationError } from "objection"
 
 const enchantedForestsRouter = new express.Router()
 
-import EnchantedForest from "../../../models/EnchantedForest.js"
+import EnchantedForest from "../../../models/index.js"
 import enchantedForestUnicornsRouter from "./enchantedForestUnicornsRouter.js"
 
 enchantedForestsRouter.get("/", async (req, res) => {

@@ -1,4 +1,3 @@
-const { EnchantedForest } = require(".")
 const Model = require("./Model")
 
 class Unicorn extends Model {

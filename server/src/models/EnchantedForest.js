@@ -6,8 +6,7 @@ class EnchantedForest extends Model {
   }
 
   static get relationMappings() {
-    // const { Unicorn } = require("./index.js")
-    const Unicorn = require("./Unicorn.js")
+    const Unicorn = require("./index.js")
 
     return {
       unicorns: {
